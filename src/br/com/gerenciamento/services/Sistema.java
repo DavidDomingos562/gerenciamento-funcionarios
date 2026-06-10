@@ -42,25 +42,25 @@ public class Sistema {
 
                     funcionarios.add(programador);
                     System.out.println();
-                    System.out.println("Funcionario Adicionado!");
+                    System.out.println("✅Funcionario Adicionado!");
                 } else if (cargo.equalsIgnoreCase("2")) {
                     Gerente gerente = new Gerente();
                     gerente.CadastrarFunc();
 
                     funcionarios.add(gerente);
-                    System.out.println("Funcionario Adicionado!");
+                    System.out.println("✅Funcionario Adicionado!");
 
                 } else if (cargo.equalsIgnoreCase("3")) {
                     Qa qa = new Qa();
 
                     qa.CadastrarFunc();
                     funcionarios.add(qa);
-                    System.out.println("Funcionario Adicionado");
+                    System.out.println("✅Funcionario Adicionado");
                 } else if (cargo.equalsIgnoreCase("4")) {
                     Design design = new Design();
                     design.CadastrarFunc();
                     funcionarios.add(design);
-                    System.out.println("Funcionario Adicionado");
+                    System.out.println("✅Funcionario Adicionado");
                 }
             } else if (escolha.equalsIgnoreCase("2")) {
                 listarTodosFuncionarios();
@@ -95,7 +95,21 @@ public class Sistema {
             System.out.println("Salario: " + funcionario.getSalario());
             System.out.println("ID: " + funcionario.getId());
             if (funcionario instanceof Programador){
-                System.out.println("");
+                System.out.println("Cargo: Programador");
+                System.out.println("Linguagem: "+((Programador) funcionario).getLinguagem());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(funcionario instanceof Gerente){
+                System.out.println("Cargo: gerente");
+                System.out.println("Setor: "+((Gerente) funcionario).getSetor());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(funcionario instanceof Qa){
+                System.out.println("Cargo: gerente");
+                System.out.println("Setor: "+((Qa) funcionario).getFerramenta());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(funcionario instanceof Design){
+                System.out.println("Cargo: gerente");
+                System.out.println("Setor: "+((Design) funcionario).getFerramenta());
+                System.out.println("-=-=-=-=-=-=-=");
             }
 
             encontrou = true;
@@ -241,13 +255,13 @@ public class Sistema {
         Iterator<Funcionario> iterator = funcionarios.iterator();
         while (iterator.hasNext()) {
             Funcionario f = iterator.next();
-            if (f.getId() != null && f.getId().equals(idBusca)) { // Use equals, não equalsIgnoreCase
+            if (f.getId() != null && f.getId().equals(idBusca)) {
                 System.out.println("Funcionário encontrado: " + f.getNome());
                 System.out.print("Confirmar remoção? (S/N): ");
                 String confirmacao = scanner.nextLine();
 
                 if (confirmacao.equalsIgnoreCase("S")) {
-                    iterator.remove(); // Remove com segurança
+                    iterator.remove();
                     System.out.println("✅ Funcionário removido com sucesso!");
                 } else {
                     System.out.println("❌ Remoção cancelada!");
