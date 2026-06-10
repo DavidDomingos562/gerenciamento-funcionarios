@@ -10,7 +10,7 @@ public class Qa extends Funcionario{
         setNome(scanner.nextLine());
         System.out.println("CPF: ");
         setCpf(scanner.nextLine());
-        System.out.println("Linguagem: ");
+        System.out.println("Ferramenta: ");
         this.ferramenta = scanner.nextLine();
         System.out.println("Salario: ");
         setSalario(scanner.nextDouble());
