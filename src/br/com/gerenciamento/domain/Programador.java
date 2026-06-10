@@ -1,6 +1,6 @@
 package br.com.gerenciamento.domain;
 
-public class Programador extends Funcionario implements Info{
+public class Programador extends Funcionario{
     private String linguagem;
 
     @Override
@@ -24,10 +24,7 @@ public class Programador extends Funcionario implements Info{
         System.out.println("ID: "+idGerado);
     }
 
-    @Override
-    public void mostrarInfo() {
-        System.out.println("Nome: "+nome);
-    }
+
 
     public String getLinguagem() {
         return linguagem;
