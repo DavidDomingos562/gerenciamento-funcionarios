@@ -7,7 +7,7 @@ public abstract class Funcionario {
     protected String cpf;
     protected double salario;
     protected String cargo;
-    private String id;
+    protected String id;
     protected Scanner scanner = new Scanner(System.in);
     protected Carregamento carregamento;
     protected GeradorId geradorId = new GeradorId();

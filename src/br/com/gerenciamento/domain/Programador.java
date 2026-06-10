@@ -19,6 +19,7 @@ public class Programador extends Funcionario implements Info{
             System.out.print("◼");
         }
         String idGerado = geradorId.GerarId();
+        id = idGerado;
         System.out.println();
         System.out.println("ID: "+idGerado);
     }

@@ -1,8 +1,8 @@
 package br.com.gerenciamento.services;
 
-import br.com.gerenciamento.domain.Funcionario;
-import br.com.gerenciamento.domain.Programador;
+import br.com.gerenciamento.domain.*;
 
+import java.lang.classfile.attribute.NestHostAttribute;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,17 +45,21 @@ public class Sistema {
                     System.out.println("Funcionario adicionado!");
                 }
             }else if(escolha.equalsIgnoreCase("2")){
-                    listarTodosFuncionarios();
+                listarTodosFuncionarios();
             }else if(escolha.equalsIgnoreCase("3")){
                 listarProgramadores();
             }else if(escolha.equalsIgnoreCase("4")){
-
+                listarQas();
             }else if(escolha.equalsIgnoreCase("5")){
-
+                listarGerentes();
             }else if(escolha.equalsIgnoreCase("6")){
-
+                listarDesignrs();
             }else if(escolha.equalsIgnoreCase("7")){
 
+            }else if(escolha.equalsIgnoreCase("8")){
+
+            }else {
+                System.out.println("Opção invalida");
             }
 
         }while (!escolha.equalsIgnoreCase("0"));
@@ -64,6 +68,8 @@ public class Sistema {
     }
 
     public void listarTodosFuncionarios(){
+        boolean encontrou = false;
+
         for (Funcionario funcionario : funcionarios){
             System.out.println("-=-=-=-=-=-=-=");
             System.out.println("Nome: "+funcionario.getNome());
@@ -71,11 +77,52 @@ public class Sistema {
             System.out.println("Salario: "+funcionario.getSalario());
             System.out.println("ID: "+funcionario.getId());
             System.out.println("-=-=-=-=-=-=-=");
+            encontrou = true;
+        }
+        if (!encontrou){
+            System.out.println("Nenhum Funcionario encontrado");
         }
     }
 
+    public void listarGerentes(){
+        boolean encontrou = false;
+        for (Funcionario funcionario : funcionarios){
+            if (funcionario instanceof Gerente){
+                System.out.println("-=-=-=-=-=-=-=");
+                System.out.println("nome: "+funcionario.getNome());
+                System.out.println("CPF: "+funcionario.getCpf());
+                System.out.println("Salario: "+funcionario.getSalario());
+                System.out.println("Setor: "+ ((Gerente) funcionario).getSetor());
+                System.out.println("ID: "+funcionario.getId());
+                System.out.println("-=-=-=-=-=-=-=");
+                encontrou = true;
+            }
+            if (!encontrou){
+                System.out.println("Nenhum gerente encontrado");
+            }
+        }
+    }
 
+    public void listarDesignrs(){
+        boolean encontrou = false;
+        for (Funcionario funcionario : funcionarios){
+            if (funcionario instanceof Design){
+                System.out.println("-=-=-=-=-=-=-=");
+                System.out.println("nome: "+funcionario.getNome());
+                System.out.println("CPF: "+funcionario.getCpf());
+                System.out.println("Salario: "+funcionario.getSalario());
+                System.out.println("Linguagem: "+((Design) funcionario).getFerramenta());
+                System.out.println("ID: "+funcionario.getId());
+                System.out.println("-=-=-=-=-=-=-=");
+                encontrou = true;
+            }
+            if (!encontrou){
+                System.out.println("Nenhum Design encontrado");
+            }
+        }
+    }
     public void listarProgramadores(){
+        boolean encontrou = false;
         for (Funcionario funcionario : funcionarios){
             if(funcionario instanceof Programador){
                 System.out.println("-=-=-=-=-=-=-=");
@@ -85,7 +132,31 @@ public class Sistema {
                 System.out.println("Linguagem: "+((Programador) funcionario).getLinguagem());
                 System.out.println("ID: "+funcionario.getId());
                 System.out.println("-=-=-=-=-=-=-=");
+                encontrou = true;
+            }
+            if (!encontrou){
+                System.out.println("Nenhum Programador encontrado");
             }
         }
     }
+    public void listarQas(){
+        boolean encontrou = false;
+        for (Funcionario funcionario : funcionarios){
+            if (funcionario instanceof Qa){
+                System.out.println("-=-=-=-=-=-=-=");
+                System.out.println("nome: "+funcionario.getNome());
+                System.out.println("CPF: "+funcionario.getCpf());
+                System.out.println("Salario: "+funcionario.getSalario());
+                System.out.println("Linguagem: "+((Qa) funcionario).getFerramenta());
+                System.out.println("ID: "+funcionario.getId());
+                System.out.println("-=-=-=-=-=-=-=");
+                encontrou = true;
+            }
+            if (!encontrou){
+                System.out.println("Nenhum QA encontrado");
+            }
+        }
+    }
+
+
 }
