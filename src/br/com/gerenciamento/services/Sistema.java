@@ -2,8 +2,8 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.*;
 
-import java.lang.classfile.attribute.NestHostAttribute;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Sistema {
@@ -75,7 +75,7 @@ public class Sistema {
             } else if (escolha.equalsIgnoreCase("7")) {
                 buscarPorId();
             } else if (escolha.equalsIgnoreCase("8")) {
-
+                removerPorId();
             } else {
                 System.out.println("Opção invalida");
             }
@@ -94,8 +94,12 @@ public class Sistema {
             System.out.println("CPF: " + funcionario.getCpf());
             System.out.println("Salario: " + funcionario.getSalario());
             System.out.println("ID: " + funcionario.getId());
-            System.out.println("-=-=-=-=-=-=-=");
+            if (funcionario instanceof Programador){
+                System.out.println("");
+            }
+
             encontrou = true;
+
         }
         if (!encontrou) {
             System.out.println("Nenhum Funcionario encontrado");
@@ -221,6 +225,40 @@ public class Sistema {
         }
         if (!encontrou) {
             System.out.println("Nenhum Funcionario encontrado");
+        }
+    }
+
+    public void removerPorId(){
+        if (funcionarios.isEmpty()){
+            System.out.println("Nenhum Funcionario cadastrado");
+            return;
+        }
+
+        System.out.println("\uD83D\uDD0DDigite o Id do funcionario");
+        String idBusca = scanner.nextLine();
+        boolean encontrado = false;
+
+        Iterator<Funcionario> iterator = funcionarios.iterator();
+        while (iterator.hasNext()) {
+            Funcionario f = iterator.next();
+            if (f.getId() != null && f.getId().equals(idBusca)) { // Use equals, não equalsIgnoreCase
+                System.out.println("Funcionário encontrado: " + f.getNome());
+                System.out.print("Confirmar remoção? (S/N): ");
+                String confirmacao = scanner.nextLine();
+
+                if (confirmacao.equalsIgnoreCase("S")) {
+                    iterator.remove(); // Remove com segurança
+                    System.out.println("✅ Funcionário removido com sucesso!");
+                } else {
+                    System.out.println("❌ Remoção cancelada!");
+                }
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("❌ Funcionário com ID '" + idBusca + "' não encontrado!");
         }
     }
 
