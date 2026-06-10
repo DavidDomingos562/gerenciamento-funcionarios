@@ -42,7 +42,25 @@ public class Sistema {
 
                     funcionarios.add(programador);
                     System.out.println();
-                    System.out.println("Funcionario adicionado!");
+                    System.out.println("Funcionario Adicionado!");
+                }else if (escolha.equalsIgnoreCase("2")){
+                    Gerente gerente = new Gerente();
+                    gerente.CadastrarFunc();
+
+                    funcionarios.add(gerente);
+                    System.out.println("Funcionario Adicionado!");
+
+                }else if(escolha.equalsIgnoreCase("3")){
+                    Qa qa = new Qa();
+
+                    qa.CadastrarFunc();
+                    funcionarios.add(qa);
+                    System.out.println("Funcionario Adicionado");
+                }else if(escolha.equalsIgnoreCase("4")){
+                    Design design = new Design();
+                    design.CadastrarFunc();
+                    funcionarios.add(design);
+                    System.out.println("Funcionario Adicionado");
                 }
             }else if(escolha.equalsIgnoreCase("2")){
                 listarTodosFuncionarios();
@@ -55,7 +73,7 @@ public class Sistema {
             }else if(escolha.equalsIgnoreCase("6")){
                 listarDesignrs();
             }else if(escolha.equalsIgnoreCase("7")){
-
+                buscarPorId();
             }else if(escolha.equalsIgnoreCase("8")){
 
             }else {
@@ -155,6 +173,49 @@ public class Sistema {
             if (!encontrou){
                 System.out.println("Nenhum QA encontrado");
             }
+        }
+    }
+    public void buscarPorId(){
+        if (funcionarios.isEmpty()){
+            System.out.println("⚠\uFE0FNenhum Funcionario Cadastrado");
+            return;
+        }
+
+        System.out.println("\uD83D\uDD0DDigite o Id do funcionario");
+        String idBusca = scanner.nextLine();
+        boolean encontrou = false;
+
+        for (Funcionario f : funcionarios){
+            if (f.getId() != null && f.getId().equalsIgnoreCase(idBusca)){
+                System.out.println("✅Funcionario encontrado");
+                System.out.println("-=-=-=-=-=-=-=");
+                System.out.println("nome: "+f.getNome());
+                System.out.println("CPF: "+f.getCpf());
+                System.out.println("Salario: "+f.getSalario());
+                System.out.println("ID: "+f.getId());
+
+                encontrou = true;
+            }
+            if (f instanceof Programador){
+                System.out.println("Cargo: Programador");
+                System.out.println("Linguagem: "+((Programador) f).getLinguagem());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(f instanceof Gerente){
+                System.out.println("Cargo: Gerente");
+                System.out.println("Setor "+((Gerente) f).getSetor());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(f instanceof Design){
+                System.out.println("Cargo: Designer");
+                System.out.println("Ferramenta: "+((Design) f).getFerramenta());
+                System.out.println("-=-=-=-=-=-=-=");
+            }else if(f instanceof Qa){
+                System.out.println("Cargo: QA");
+                System.out.println("Ferramenta: "+((Qa) f).getFerramenta());
+                System.out.println("-=-=-=-=-=-=-=");
+            }
+        }
+        if (!encontrou){
+            System.out.println("Nenhum Funcionario encontrado");
         }
     }
 

@@ -9,7 +9,7 @@ public abstract class Funcionario {
     protected String cargo;
     protected String id;
     protected Scanner scanner = new Scanner(System.in);
-    protected Carregamento carregamento;
+
     protected GeradorId geradorId = new GeradorId();
 
 
